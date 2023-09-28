@@ -25,3 +25,17 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Adding Cesium with Angular
+
+Since angular is using a module bundler webpack, adding Cesium requires a little bit more of configuration.
+
+install cesium `npm i cesium`
+
+install a custom webpack `npm i @angular-builders/custom-webpack@15.0.0`
+
+in file `angular.json`, update builders to use custom webpack. Reference `extra-webpack.config.js` file into `customWebpackConfig`. Lastly reference cesium assets and styles.
+
+supply `CESIUM_BASE_URL` with the asset directory in `main.ts` file
+
+you should now have the cesium rendering
