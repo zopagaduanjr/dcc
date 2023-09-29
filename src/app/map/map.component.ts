@@ -29,6 +29,7 @@ export class MapComponent implements OnInit {
     requestRenderMode: true,
   };
   viewer: Viewer | undefined;
+
   constructor(private el: ElementRef) {}
 
   async ngOnInit(): Promise<void> {
@@ -53,19 +54,19 @@ export class MapComponent implements OnInit {
   }
 
   rotateCamera(): void {
-    let heading = 0; //or any starting angle in radians
-    let rotation = -1; //counter-clockwise; +1 would be clockwise
-    let centre = Cartesian3.fromDegrees(this.longitude, this.latitude);
-    let elevation = 333; // 100 meters
-    let pitch = -0.7854; //looking down at 45 degrees
-    const SMOOTHNESS = 600;
-
+    this.pointCameraAt(155);
     this.viewer?.clock.onTick.addEventListener(() => {
-      heading += (rotation * Math.PI) / SMOOTHNESS;
-      this.viewer?.camera.lookAt(
-        centre,
-        new HeadingPitchRange(heading, pitch, elevation)
-      );
+      this.viewer?.camera.rotate(Cartesian3.UNIT_Z);
     });
+  }
+
+  pointCameraAt(elevation: number): void {
+    const target = Cartesian3.fromDegrees(this.longitude, this.latitude);
+    const pitch = -Math.PI / 4;
+    const heading = 0;
+    this.viewer?.camera.lookAt(
+      target,
+      new HeadingPitchRange(heading, pitch, elevation)
+    );
   }
 }
