@@ -15,8 +15,9 @@ import { environment } from "src/environments/environment";
   styleUrls: ["./map.component.css"],
 })
 export class MapComponent implements OnInit {
-  latitude: number = 7.072156524885305;
-  longitude: number = 125.61208610717645;
+  latitude: number = 7.082318962585432;
+  longitude: number = 125.60235484885474;
+  elevation: number = 155;
   viewerOptions: Viewer.ConstructorOptions = {
     globe: false,
     baseLayerPicker: false,
@@ -54,7 +55,7 @@ export class MapComponent implements OnInit {
   }
 
   rotateCamera(): void {
-    this.pointCameraAt(155);
+    this.pointCameraAt(this.elevation);
     this.viewer?.clock.onTick.addEventListener(() => {
       this.viewer?.camera.rotate(Cartesian3.UNIT_Z);
     });

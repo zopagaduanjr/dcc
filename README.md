@@ -39,3 +39,7 @@ in file `angular.json`, update builders to use custom webpack. Reference `extra-
 supply `CESIUM_BASE_URL` with the asset directory in `main.ts` file
 
 you should now have the cesium rendering
+
+## Adding Google Maps Elevation API
+
+Elevation service is a server-side API.
