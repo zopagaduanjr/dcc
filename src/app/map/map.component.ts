@@ -10,7 +10,7 @@ import {
   LabelStyle,
   VerticalOrigin,
   DistanceDisplayCondition,
-  HeightReference,
+  Ion,
 } from "cesium";
 import { environment } from "src/environments/environment";
 import { coffeeshops } from "../coffeeshops";
@@ -48,11 +48,28 @@ export class MapComponent implements OnInit {
 
   async setupViewer(): Promise<void> {
     RequestScheduler.requestsByServer = { "tile.googleapis.com:443": 18 };
+    var tileset = null;
+    try {
+      tileset = await Cesium3DTileset.fromUrl(
+        `https://tile.googleapis.com/v1/3dtiles/root.json?key=${environment.googleMap.mapTiles}`
+      );
+    } catch (e) {
+      this.viewerOptions = {
+        baseLayerPicker: false,
+        homeButton: false,
+        geocoder: false,
+        sceneModePicker: false,
+        timeline: false,
+        fullscreenButton: false,
+        animation: false,
+      };
+      Ion.defaultAccessToken = environment.cesiumToken;
+      this.elevationMarkerOffset = 0;
+    }
     this.viewer = new Viewer(this.el.nativeElement, this.viewerOptions);
-    const tileset = await Cesium3DTileset.fromUrl(
-      `https://tile.googleapis.com/v1/3dtiles/root.json?key=${environment.googleMap.mapTiles}`
-    );
-    this.viewer.scene.primitives.add(tileset);
+    if (tileset != null) {
+      this.viewer.scene.primitives.add(tileset);
+    }
 
     this.viewer.camera.setView({
       destination: Cartesian3.fromDegrees(
