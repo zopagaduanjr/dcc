@@ -1,18 +1,14 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
 
-import { AppComponent } from './app.component';
-import { MapComponent } from './map/map.component';
+import { AppComponent } from "./app.component";
+import { MapComponent } from "./map/map.component";
+import { InfoBoxComponent } from "./info-box/info-box.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MapComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
+  declarations: [AppComponent, MapComponent, InfoBoxComponent],
+  imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

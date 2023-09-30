@@ -1,0 +1,20 @@
+.info-box {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+  height: 200px;
+  width: 200px;
+  background-color: white;
+}
+
+@media screen and (max-width: 540px) {
+  .info-box {
+    bottom: 0;
+    top: auto;
+  }
+
+  .mat-expansion-panel {
+    width: 90vw;
+  }
+}
