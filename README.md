@@ -43,3 +43,7 @@ you should now have the cesium rendering
 ## Adding Google Maps Elevation API
 
 Elevation service is a server-side API.
+
+## Coffeeshop Data
+
+Comes from dcc-data repository.
