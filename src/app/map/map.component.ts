@@ -7,10 +7,10 @@ import {
   Math,
   HeadingPitchRange,
   RequestScheduler,
-  Color,
   LabelStyle,
   VerticalOrigin,
   DistanceDisplayCondition,
+  HeightReference,
 } from "cesium";
 import { environment } from "src/environments/environment";
 import { coffeeshops } from "../coffeeshops";
@@ -118,14 +118,15 @@ export class MapComponent implements OnInit {
         style: LabelStyle.FILL_AND_OUTLINE,
         outlineWidth: 2,
         verticalOrigin: VerticalOrigin.BOTTOM,
-        pixelOffset: new Cartesian2(0, -40),
+        pixelOffset: new Cartesian2(0, -80),
         distanceDisplayCondition: new DistanceDisplayCondition(0, 1000),
       },
 
       billboard: {
         image: shop.logo,
-        width: 64,
+        width: 128,
         height: 64,
+        verticalOrigin: VerticalOrigin.BOTTOM,
       },
     });
   }
