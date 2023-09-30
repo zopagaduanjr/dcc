@@ -2,6 +2,7 @@ export interface CoffeeShop {
   name: string;
   geometry: Geometry;
   elevation: number;
+  logo?: string;
 }
 
 interface Geometry {

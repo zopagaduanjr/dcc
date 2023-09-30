@@ -55,6 +55,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 7.885401725769043,
+    logo: "https://storage.googleapis.com/coffee_icon/hdn.png",
   },
   {
     name: "HisHer by Purge Coffee",

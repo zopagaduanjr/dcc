@@ -106,23 +106,26 @@ export class MapComponent implements OnInit {
   createMarker(shop: CoffeeShop): void {
     //problem i think is that marker gets lost in the terrains, hence can't clamp
     this.viewer?.entities.add({
+      name: shop.name,
       position: Cartesian3.fromDegrees(
         shop.geometry.location.lng,
         shop.geometry.location.lat,
         shop.elevation + this.elevationMarkerOffset
       ),
-      point: {
-        pixelSize: 5,
-        color: Color.RED,
-        outlineColor: Color.WHITE,
-        outlineWidth: 2,
-      },
+
       label: {
         text: shop.name,
         style: LabelStyle.FILL_AND_OUTLINE,
         outlineWidth: 2,
         verticalOrigin: VerticalOrigin.BOTTOM,
-        pixelOffset: new Cartesian2(0, -9),
+        pixelOffset: new Cartesian2(0, -40),
+        distanceDisplayCondition: new DistanceDisplayCondition(0, 1000),
+      },
+
+      billboard: {
+        image: shop.logo,
+        width: 64,
+        height: 64,
       },
     });
   }
