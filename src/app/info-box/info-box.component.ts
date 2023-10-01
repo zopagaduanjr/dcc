@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { DataService } from "../services/data.service";
+import * as Cesium from "cesium";
 
 @Component({
   selector: "app-info-box",
@@ -12,15 +13,18 @@ export class InfoBoxComponent {
     this.dataService = _dataService;
   }
 
+  position?: string;
+  right?: string;
+  up?: string;
+  direction?: string;
+
   onSelect(): void {
-    console.log(
-      "AMDG cartographic",
-      this.dataService?.viewer?.camera.positionCartographic
-    );
-    console.log("AMDG positionWC", this.dataService?.viewer?.camera.positionWC);
-    console.log(
-      "Heading Pitch Roll",
-      `(${this.dataService?.viewer?.scene?.camera?.heading},${this.dataService?.viewer?.scene?.camera?.pitch}, ${this.dataService?.viewer?.scene?.camera?.roll})`
-    );
+    this.position =
+      "Position" + this.dataService?.viewer?.camera.position.toString();
+    this.right =
+      "RightWC" + this.dataService?.viewer?.camera.rightWC.toString();
+    this.up = "upWC" + this.dataService?.viewer?.camera.upWC.toString();
+    this.direction =
+      "directionWC" + this.dataService?.viewer?.camera.directionWC.toString();
   }
 }

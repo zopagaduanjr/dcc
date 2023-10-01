@@ -158,12 +158,11 @@ export class MapComponent implements OnInit {
 
   setCircle(): Cesium.SampledPositionProperty {
     const start = Cesium.JulianDate.fromDate(new Date(2015, 2, 25, 16));
-
-    var lat = Cesium.Math.toDegrees(0.12348093458854793);
-    var lon = Cesium.Math.toDegrees(2.192388248145831);
+    var lat = 7.074936402254783;
+    var lon = 125.61459367283636;
     var radius = 0.04;
     const property = new Cesium.SampledPositionProperty();
-    for (let i = 0; i <= 360; i += 45) {
+    for (let i = 0; i <= 360; i += 15) {
       const radians = Cesium.Math.toRadians(i);
       const time = Cesium.JulianDate.addSeconds(
         start,
@@ -171,23 +170,16 @@ export class MapComponent implements OnInit {
         new Cesium.JulianDate()
       );
       const position = Cesium.Cartesian3.fromDegrees(
-        lon + radius * 1.5 * Math.cos(radians),
-        lat + radius * Math.sin(radians),
-        Cesium.Math.nextRandomNumber() * 500 + 1750
+        lon + radius * Math.cos(radians),
+        lat + radius * 1.5 * Math.sin(radians),
+        1750
       );
       property.addSample(time, position);
-
-      //Also create a point for each sample we generate.
-      this.viewer?.entities.add({
-        position: position,
-        point: {
-          pixelSize: 8,
-          color: Cesium.Color.TRANSPARENT,
-          outlineColor: Cesium.Color.YELLOW,
-          outlineWidth: 3,
-        },
-      });
     }
+    property.setInterpolationOptions({
+      interpolationDegree: 3,
+      interpolationAlgorithm: Cesium.HermitePolynomialApproximation,
+    });
     return property;
   }
 
@@ -203,7 +195,7 @@ export class MapComponent implements OnInit {
       this.viewer.clock.stopTime = stop.clone();
       this.viewer.clock.currentTime = start.clone();
       this.viewer.clock.clockRange = Cesium.ClockRange.LOOP_STOP; //Loop at the end
-      this.viewer.clock.multiplier = 10;
+      this.viewer.clock.multiplier = 1;
     }
   }
 
@@ -217,37 +209,59 @@ export class MapComponent implements OnInit {
     );
     const position = this.setCircle();
     const entity = this.viewer?.entities.add({
-      //Set the entity availability to the same interval as the simulation time.
       availability: new Cesium.TimeIntervalCollection([
         new Cesium.TimeInterval({
           start: start,
           stop: stop,
         }),
       ]),
-
-      //Use our computed positions
       position: position,
-
-      //Automatically compute orientation based on position movement.
       orientation: new Cesium.VelocityOrientationProperty(position),
+    });
 
-      //Load the Cesium plane model to represent the entity
-      point: {
-        pixelSize: 50,
-        color: Cesium.Color.RED,
-        outlineColor: Cesium.Color.WHITE,
-        outlineWidth: 2,
-      },
+    this.cameraFollower(entity!);
+  }
 
-      //Show the path as a pink line sampled in 1 second increments.
-      path: {
-        resolution: 1,
-        material: new Cesium.PolylineGlowMaterialProperty({
-          glowPower: 0.1,
-          color: Cesium.Color.YELLOW,
-        }),
-        width: 30,
-      },
+  cameraFollower(entity: Cesium.Entity): void {
+    const camera = this.viewer!.camera;
+    camera.position = new Cesium.Cartesian3(0.25, 0.0, 0.0);
+    camera.direction = new Cesium.Cartesian3(0, 1, -0.3);
+    camera.up = new Cesium.Cartesian3(0.0, 0.0, 1.0);
+    camera.right = new Cesium.Cartesian3(0.0, -1.0, 0.0);
+    this.viewer!.scene.postUpdate.addEventListener(function (scene, time) {
+      const position = entity.position!.getValue(time);
+      if (!Cesium.defined(position)) {
+        return;
+      }
+
+      let transform;
+      if (!Cesium.defined(entity.orientation)) {
+        transform = Cesium.Transforms.eastNorthUpToFixedFrame(position);
+      } else {
+        const orientation = entity.orientation.getValue(time);
+        if (!Cesium.defined(orientation)) {
+          return;
+        }
+
+        transform = Cesium.Matrix4.fromRotationTranslation(
+          Cesium.Matrix3.fromQuaternion(orientation),
+          position
+        );
+      }
+
+      // Save camera state
+      const offset = Cesium.Cartesian3.clone(camera.position);
+      const direction = Cesium.Cartesian3.clone(camera.direction);
+      const up = Cesium.Cartesian3.clone(camera.up);
+
+      // Set camera to be in model's reference frame.
+      camera.lookAtTransform(transform);
+
+      // Reset the camera state to the saved state so it appears fixed in the model's frame.
+      Cesium.Cartesian3.clone(offset, camera.position);
+      Cesium.Cartesian3.clone(direction, camera.direction);
+      Cesium.Cartesian3.clone(up, camera.up);
+      Cesium.Cartesian3.cross(direction, up, camera.right);
     });
   }
 }
