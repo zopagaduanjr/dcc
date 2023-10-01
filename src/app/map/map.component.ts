@@ -164,7 +164,7 @@ export class MapComponent implements OnInit {
     var lat = 7.074936402254783;
     var lon = 125.61459367283636;
 
-    var radius = 0.04;
+    var radius = 0.01;
     const property = new Cesium.SampledPositionProperty();
     for (let i = 0; i <= 360; i += 15) {
       const radians = Cesium.Math.toRadians(i);
@@ -176,7 +176,7 @@ export class MapComponent implements OnInit {
       const position = Cesium.Cartesian3.fromDegrees(
         lon + radius * Math.cos(radians),
         lat + radius * 1.5 * Math.sin(radians),
-        1750
+        500
       );
       property.addSample(time, position);
     }
@@ -221,9 +221,12 @@ export class MapComponent implements OnInit {
       ]),
       position: position,
       orientation: new Cesium.VelocityOrientationProperty(position),
+      point: {
+        color: Cesium.Color.TRANSPARENT,
+      },
+      viewFrom: <any>new Cesium.Cartesian3(3000, -2000, 500),
     });
-
-    this.cameraFollower(entity!);
+    this.viewer!.trackedEntity = entity;
   }
 
   cameraFollower(entity: Cesium.Entity): void {
@@ -272,6 +275,7 @@ export class MapComponent implements OnInit {
     this.dataService!.toggleInitialCameraInterpol = (start: boolean) => {
       this.viewer!.clock.shouldAnimate = start;
       if (!start) {
+        this.viewer?.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
       }
     };
   }
