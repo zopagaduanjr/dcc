@@ -27,4 +27,13 @@ export class InfoBoxComponent {
     this.direction =
       "directionWC" + this.dataService?.viewer?.camera.directionWC.toString();
   }
+
+  pauseFlight(): void {
+    this.dataService!.toggleInitialCameraInterpol!(false);
+    // this.dataService!.cancelInitialCameraInterpol!();
+  }
+  resumeFlight(): void {
+    this.dataService!.toggleInitialCameraInterpol!(true);
+    // this.dataService!.startInitialCameraInterpol.next(true);
+  }
 }

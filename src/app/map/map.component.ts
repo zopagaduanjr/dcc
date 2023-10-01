@@ -48,6 +48,9 @@ export class MapComponent implements OnInit {
     // this.rotateCamera();
     coffeeshops.forEach((e) => this.createMarker(e));
     this.tryInterpol();
+    this.dataService?.startInitialCameraInterpol.subscribe((res) => {
+      this.tryInterpol();
+    });
   }
 
   async setupViewer(): Promise<void> {
@@ -56,7 +59,7 @@ export class MapComponent implements OnInit {
     };
     var tileset = null;
     try {
-      // tileset = await Cesium3DTileset.fromUrl(
+      // tileset = await Cesium.Cesium3DTileset.fromUrl(
       //   `https://tile.googleapis.com/v1/3dtiles/root.json?key=${environment.googleMap.mapTiles}`
       // );
       throw new Error("dont load maptiles");
@@ -160,6 +163,7 @@ export class MapComponent implements OnInit {
     const start = Cesium.JulianDate.fromDate(new Date(2015, 2, 25, 16));
     var lat = 7.074936402254783;
     var lon = 125.61459367283636;
+
     var radius = 0.04;
     const property = new Cesium.SampledPositionProperty();
     for (let i = 0; i <= 360; i += 15) {
@@ -228,40 +232,47 @@ export class MapComponent implements OnInit {
     camera.direction = new Cesium.Cartesian3(0, 1, -0.3);
     camera.up = new Cesium.Cartesian3(0.0, 0.0, 1.0);
     camera.right = new Cesium.Cartesian3(0.0, -1.0, 0.0);
-    this.viewer!.scene.postUpdate.addEventListener(function (scene, time) {
-      const position = entity.position!.getValue(time);
-      if (!Cesium.defined(position)) {
-        return;
-      }
-
-      let transform;
-      if (!Cesium.defined(entity.orientation)) {
-        transform = Cesium.Transforms.eastNorthUpToFixedFrame(position);
-      } else {
-        const orientation = entity.orientation.getValue(time);
-        if (!Cesium.defined(orientation)) {
+    var removeCameraFollowerEvent =
+      this.viewer!.scene.postUpdate.addEventListener(function (scene, time) {
+        const position = entity.position!.getValue(time);
+        if (!Cesium.defined(position)) {
           return;
         }
 
-        transform = Cesium.Matrix4.fromRotationTranslation(
-          Cesium.Matrix3.fromQuaternion(orientation),
-          position
-        );
+        let transform;
+        if (!Cesium.defined(entity.orientation)) {
+          transform = Cesium.Transforms.eastNorthUpToFixedFrame(position);
+        } else {
+          const orientation = entity.orientation.getValue(time);
+          if (!Cesium.defined(orientation)) {
+            return;
+          }
+
+          transform = Cesium.Matrix4.fromRotationTranslation(
+            Cesium.Matrix3.fromQuaternion(orientation),
+            position
+          );
+        }
+
+        // Save camera state
+        const offset = Cesium.Cartesian3.clone(camera.position);
+        const direction = Cesium.Cartesian3.clone(camera.direction);
+        const up = Cesium.Cartesian3.clone(camera.up);
+
+        // Set camera to be in model's reference frame.
+        camera.lookAtTransform(transform);
+
+        // Reset the camera state to the saved state so it appears fixed in the model's frame.
+        Cesium.Cartesian3.clone(offset, camera.position);
+        Cesium.Cartesian3.clone(direction, camera.direction);
+        Cesium.Cartesian3.clone(up, camera.up);
+        Cesium.Cartesian3.cross(direction, up, camera.right);
+      });
+    this.dataService!.cancelInitialCameraInterpol = removeCameraFollowerEvent;
+    this.dataService!.toggleInitialCameraInterpol = (start: boolean) => {
+      this.viewer!.clock.shouldAnimate = start;
+      if (!start) {
       }
-
-      // Save camera state
-      const offset = Cesium.Cartesian3.clone(camera.position);
-      const direction = Cesium.Cartesian3.clone(camera.direction);
-      const up = Cesium.Cartesian3.clone(camera.up);
-
-      // Set camera to be in model's reference frame.
-      camera.lookAtTransform(transform);
-
-      // Reset the camera state to the saved state so it appears fixed in the model's frame.
-      Cesium.Cartesian3.clone(offset, camera.position);
-      Cesium.Cartesian3.clone(direction, camera.direction);
-      Cesium.Cartesian3.clone(up, camera.up);
-      Cesium.Cartesian3.cross(direction, up, camera.right);
-    });
+    };
   }
 }
