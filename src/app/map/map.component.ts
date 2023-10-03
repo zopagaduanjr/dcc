@@ -15,7 +15,7 @@ export class MapComponent implements OnInit {
   elevationMarkerOffset: number = 74;
   elevationViewerOffset: number = 150;
   currentOnTickStep: number = 0;
-  cameraSweepSteps: number = 500;
+  cameraSweepSteps: number = 400;
   forward: boolean = true;
   viewerOptions: Cesium.Viewer.ConstructorOptions = {
     globe: false,
@@ -32,14 +32,14 @@ export class MapComponent implements OnInit {
   viewer?: Cesium.Viewer;
   dataService?: DataService;
   overViewCartesian3: Cesium.Cartesian3 = new Cesium.Cartesian3(
-    -3687900.922436941,
-    5150484.382833073,
-    772354.1123908913
+    -3684375.1675305003,
+    5150018.050607001,
+    774385.8930635459
   );
-  overViewOrientation: Cesium.HeadingPitchRoll = new Cesium.HeadingPitchRoll(
-    0.20033943352436978,
-    -0.3990495255836124,
-    0.000009647921471511722
+  overViewOrientation: Cesium.HeadingPitchRange = new Cesium.HeadingPitchRange(
+    0.2390414619070249,
+    -0.31997491023730196,
+    50
   );
 
   constructor(private el: ElementRef, _dataService: DataService) {
@@ -49,11 +49,9 @@ export class MapComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.setupViewer();
     coffeeshops.forEach((e) => this.createMarker(e));
-    this.rotateCamera2();
-    // this.tryInterpol();
-    // this.dataService?.startInitialCameraInterpol.subscribe((res) => {
-    //   this.tryInterpol();
-    // });
+    setTimeout(() => {
+      this.rotateCamera2();
+    }, 5000);
   }
 
   async setupViewer(): Promise<void> {
@@ -306,7 +304,7 @@ export class MapComponent implements OnInit {
   rotateCamera2(): void {
     this.viewer?.camera.lookAt(
       this.overViewCartesian3,
-      new Cesium.HeadingPitchRange(0, -0.3990495255836124, 50)
+      new Cesium.HeadingPitchRange(0.2390414619070249, -0.31997491023730196, 50)
     );
     var removeCallBack = this.viewer?.clock.onTick.addEventListener(() => {
       if (this.currentOnTickStep == this.cameraSweepSteps) {

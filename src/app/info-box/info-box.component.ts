@@ -22,8 +22,8 @@ export class InfoBoxComponent {
     this.position =
       "Position" + this.dataService?.viewer?.camera.position.toString();
     this.right =
-      "RightWC" + this.dataService?.viewer?.camera.rightWC.toString();
-    this.up = "upWC" + this.dataService?.viewer?.camera.upWC.toString();
+      "heading" + this.dataService?.viewer?.camera.heading.toString();
+    this.up = "pitch" + this.dataService?.viewer?.camera.pitch.toString();
     this.direction =
       "directionWC" + this.dataService?.viewer?.camera.directionWC.toString();
   }
