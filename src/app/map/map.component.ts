@@ -14,6 +14,9 @@ export class MapComponent implements OnInit {
   coffeeShop: CoffeeShop = coffeeshops[0];
   elevationMarkerOffset: number = 74;
   elevationViewerOffset: number = 150;
+  currentOnTickStep: number = 0;
+  cameraSweepSteps: number = 500;
+  forward: boolean = true;
   viewerOptions: Cesium.Viewer.ConstructorOptions = {
     globe: false,
     baseLayerPicker: false,
@@ -45,12 +48,12 @@ export class MapComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.setupViewer();
-    // this.rotateCamera();
     coffeeshops.forEach((e) => this.createMarker(e));
-    this.tryInterpol();
-    this.dataService?.startInitialCameraInterpol.subscribe((res) => {
-      this.tryInterpol();
-    });
+    this.rotateCamera2();
+    // this.tryInterpol();
+    // this.dataService?.startInitialCameraInterpol.subscribe((res) => {
+    //   this.tryInterpol();
+    // });
   }
 
   async setupViewer(): Promise<void> {
@@ -298,5 +301,34 @@ export class MapComponent implements OnInit {
       //TODO: check if trackedEntity is undefined
       // this.viewer?.camera.rotate(Cesium.Cartesian3.UNIT_Z);
     });
+  }
+
+  rotateCamera2(): void {
+    this.viewer?.camera.lookAt(
+      this.overViewCartesian3,
+      new Cesium.HeadingPitchRange(0, -0.3990495255836124, 50)
+    );
+    var removeCallBack = this.viewer?.clock.onTick.addEventListener(() => {
+      if (this.currentOnTickStep == this.cameraSweepSteps) {
+        this.forward = false;
+      }
+      if (this.currentOnTickStep == 0) {
+        this.forward = true;
+      }
+      if (this.currentOnTickStep < this.cameraSweepSteps && this.forward) {
+        this.currentOnTickStep = this.currentOnTickStep + 1;
+        this.viewer?.camera.moveRight(30);
+        this.viewer?.camera.rotate(Cesium.Cartesian3.UNIT_Z, -0.002);
+      } else {
+        this.currentOnTickStep = this.currentOnTickStep - 1;
+        this.viewer?.camera.moveRight(-30);
+        this.viewer?.camera.rotate(Cesium.Cartesian3.UNIT_Z, +0.002);
+      }
+    });
+    var handler = new Cesium.ScreenSpaceEventHandler(this.viewer!.canvas);
+    handler.setInputAction((click: any) => {
+      removeCallBack!();
+      this.viewer?.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
+    }, Cesium.ScreenSpaceEventType.LEFT_DOWN);
   }
 }
