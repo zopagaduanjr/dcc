@@ -221,12 +221,8 @@ export class MapComponent implements OnInit {
       ]),
       position: position,
       orientation: new Cesium.VelocityOrientationProperty(position),
-      point: {
-        color: Cesium.Color.TRANSPARENT,
-      },
-      viewFrom: <any>new Cesium.Cartesian3(3000, -2000, 500),
     });
-    this.viewer!.trackedEntity = entity;
+    this.cameraFollower(entity!);
   }
 
   cameraFollower(entity: Cesium.Entity): void {
@@ -275,8 +271,32 @@ export class MapComponent implements OnInit {
     this.dataService!.toggleInitialCameraInterpol = (start: boolean) => {
       this.viewer!.clock.shouldAnimate = start;
       if (!start) {
-        this.viewer?.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
+        // this.viewer?.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
       }
     };
+  }
+
+  trackEntityFollower(entity: Cesium.Entity): void {
+    //use Entity's viewFrom to customize view of trackedEntity
+    //create invisible point for trackedEntity to work
+    //viewFrom: <any>new Cesium.Cartesian3(3000, -2000, 500),
+    // point: {
+    //   color: Cesium.Color.TRANSPARENT,
+    // },
+    this.viewer!.trackedEntity = entity;
+    var handler = new Cesium.ScreenSpaceEventHandler(this.viewer!.canvas);
+    handler.setInputAction((click: any) => {
+      if (this.viewer!.trackedEntity != undefined) {
+        this.viewer!.trackedEntity = undefined;
+        setTimeout(() => {
+          entity!.viewFrom = <any>this.viewer!.camera.position;
+          this.viewer!.trackedEntity = entity;
+        }, 5000);
+      }
+    }, Cesium.ScreenSpaceEventType.LEFT_DOWN);
+    this.viewer?.clock.onTick.addEventListener(() => {
+      //TODO: check if trackedEntity is undefined
+      // this.viewer?.camera.rotate(Cesium.Cartesian3.UNIT_Z);
+    });
   }
 }
