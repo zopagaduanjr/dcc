@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { DataService } from "../services/data.service";
+import { coffeeshops } from "../coffeeshops";
+import { CoffeeShop } from "../coffeeshop";
 import * as Cesium from "cesium";
 
 @Component({
@@ -13,6 +15,7 @@ export class InfoBoxComponent {
   }
 
   dataService?: DataService;
+  coffeeShops: Array<CoffeeShop> = coffeeshops;
   position?: string;
   right?: string;
   up?: string;

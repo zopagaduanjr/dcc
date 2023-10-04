@@ -9,6 +9,24 @@
   margin: auto;
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  border-radius: 16px;
+}
+
+/* elevation */
+.info-box {
+  --md-elevation-level: 5;
+  --md-sys-color-shadow: #006a6a;
+  transition-duration: 1000ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* list */
+.info-box {
+  --md-list-container-color: white;
+  --md-list-item-label-text-font: system-ui;
+  --md-list-item-supporting-text-font: system-ui;
+  --md-list-item-trailing-supporting-text-font: system-ui;
 }
 
 @media screen and (max-width: 540px) {

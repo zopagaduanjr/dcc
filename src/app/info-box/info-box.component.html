@@ -1,6 +1,15 @@
 <div class="info-box">
   <app-navigation-help class="navigation-help"></app-navigation-help>
   <h1>Davao Coffee Crawl 2023</h1>
+  <md-list>
+    <ng-container *ngFor="let coffee of coffeeShops">
+      <md-list-item>
+        {{ coffee.name }}
+      </md-list-item>
+      <md-divider></md-divider>
+    </ng-container>
+  </md-list>
+
   <button type="button" (click)="onSelect()">check camera specs</button>
   <button type="button" (click)="pauseFlight()">pause flight</button>
   <button type="button" (click)="resumeFlight()">resume flight</button>
