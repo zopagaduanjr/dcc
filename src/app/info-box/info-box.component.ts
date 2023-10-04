@@ -39,4 +39,14 @@ export class InfoBoxComponent {
     this.dataService!.toggleInitialCameraInterpol!(true);
     // this.dataService!.startInitialCameraInterpol.next(true);
   }
+
+  flyToCoffeeShop(index: number): void {
+    var heading = this.dataService?.viewer?.camera.heading;
+    var pitch = this.dataService?.viewer?.camera.pitch;
+    var coffeeShopEntity = this.dataService?.entities[index]!;
+    this.dataService?.overviewSweepRemoveCallback!();
+    this.dataService?.viewer?.flyTo(coffeeShopEntity, {
+      offset: new Cesium.HeadingPitchRange(heading, pitch, 0),
+    });
+  }
 }

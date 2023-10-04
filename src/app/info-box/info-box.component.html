@@ -2,8 +2,8 @@
   <app-navigation-help class="navigation-help"></app-navigation-help>
   <h1>Davao Coffee Crawl 2023</h1>
   <md-list>
-    <ng-container *ngFor="let coffee of coffeeShops">
-      <md-list-item>
+    <ng-container *ngFor="let coffee of coffeeShops; index as i">
+      <md-list-item (click)="flyToCoffeeShop(i)">
         {{ coffee.name }}
       </md-list-item>
       <md-divider></md-divider>

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Viewer } from "cesium";
+import * as Cesium from "cesium";
 import { Subject } from "rxjs";
 
 @Injectable({
@@ -7,7 +7,9 @@ import { Subject } from "rxjs";
 })
 export class DataService {
   constructor() {}
-  viewer: Viewer | undefined;
+  viewer: Cesium.Viewer | undefined;
+  entities: Array<Cesium.Entity> = [];
+  overviewSweepRemoveCallback?: Cesium.Event.RemoveCallback;
   toggleInitialCameraInterpol?: Function;
   cancelInitialCameraInterpol?: Function;
   startInitialCameraInterpol = new Subject<boolean>();

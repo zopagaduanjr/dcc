@@ -140,7 +140,7 @@ export class MapComponent implements OnInit {
 
   createMarker(shop: CoffeeShop): void {
     //problem i think is that marker gets lost in the terrains, hence can't clamp
-    this.viewer?.entities.add({
+    var entity = this.viewer?.entities.add({
       name: shop.name,
       position: Cesium.Cartesian3.fromDegrees(
         shop.geometry.location.lng,
@@ -164,6 +164,7 @@ export class MapComponent implements OnInit {
         verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
       },
     });
+    this.dataService?.entities.push(entity!);
   }
 
   setCircle(): Cesium.SampledPositionProperty {
@@ -333,6 +334,7 @@ export class MapComponent implements OnInit {
       }
     });
     var handler = new Cesium.ScreenSpaceEventHandler(this.viewer!.canvas);
+    this.dataService!.overviewSweepRemoveCallback = removeCallBack;
     handler.setInputAction((click: any) => {
       removeCallBack!();
       this.viewer?.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
