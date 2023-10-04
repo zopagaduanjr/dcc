@@ -8,11 +8,11 @@ import * as Cesium from "cesium";
   styleUrls: ["./info-box.component.css"],
 })
 export class InfoBoxComponent {
-  dataService?: DataService;
   constructor(_dataService: DataService) {
     this.dataService = _dataService;
   }
 
+  dataService?: DataService;
   position?: string;
   right?: string;
   up?: string;

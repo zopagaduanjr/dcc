@@ -28,6 +28,7 @@ export class MapComponent implements OnInit {
     animation: false,
     requestRenderMode: true,
     shouldAnimate: true,
+    navigationHelpButton: false,
   };
   viewer?: Cesium.Viewer;
   dataService?: DataService;
@@ -74,6 +75,7 @@ export class MapComponent implements OnInit {
         fullscreenButton: false,
         animation: false,
         shouldAnimate: true,
+        navigationHelpButton: false,
       };
       Cesium.Ion.defaultAccessToken = environment.cesiumToken;
       this.elevationMarkerOffset = 0;

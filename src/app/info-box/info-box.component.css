@@ -2,11 +2,13 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  height: 90%;
+  height: 100%;
   width: 30%;
   background-color: white;
   text-align: center;
   margin: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 540px) {
@@ -18,4 +20,8 @@
   .mat-expansion-panel {
     width: 90vw;
   }
+}
+
+.navigation-help {
+  align-self: flex-end;
 }
