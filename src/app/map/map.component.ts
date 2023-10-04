@@ -29,6 +29,8 @@ export class MapComponent implements OnInit {
     requestRenderMode: true,
     shouldAnimate: true,
     navigationHelpButton: false,
+    selectionIndicator: false,
+    infoBox: false,
   };
   viewer?: Cesium.Viewer;
   dataService?: DataService;
@@ -76,6 +78,8 @@ export class MapComponent implements OnInit {
         animation: false,
         shouldAnimate: true,
         navigationHelpButton: false,
+        selectionIndicator: false,
+        infoBox: false,
       };
       Cesium.Ion.defaultAccessToken = environment.cesiumToken;
       this.elevationMarkerOffset = 0;
@@ -304,9 +308,12 @@ export class MapComponent implements OnInit {
   }
 
   rotateCamera2(): void {
+    var heading = this.viewer?.camera.heading;
+    var pitch = this.viewer?.camera.pitch;
+    var range = this.viewer?.camera.positionCartographic.height;
     this.viewer?.camera.lookAt(
-      this.overViewCartesian3,
-      new Cesium.HeadingPitchRange(0.2390414619070249, -0.31997491023730196, 50)
+      this.viewer?.camera.position,
+      new Cesium.HeadingPitchRange(heading, pitch, range)
     );
     var removeCallBack = this.viewer?.clock.onTick.addEventListener(() => {
       if (this.currentOnTickStep == this.cameraSweepSteps) {
