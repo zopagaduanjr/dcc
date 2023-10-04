@@ -1,22 +1,37 @@
 <div class="info-box">
-  <h1 style="font-weight: 100; font-style: italic; font-size: 51px">
-    Davao Coffee Crawl 2023
-  </h1>
-  <md-list>
-    <ng-container *ngFor="let coffee of coffeeShops; index as i">
-      <md-list-item (click)="flyToCoffeeShop(i)">
-        <div slot="headline">
-          <h3 style="font-weight: 100">{{ coffee.name }}</h3>
-        </div>
-      </md-list-item>
-      <md-divider></md-divider>
-    </ng-container>
-  </md-list>
-  <sub style="font-weight: 400; padding: 16px">
-    <a href="https://www.facebook.com/davaocoffeecrawl"
-      >facebook.com/davaocoffeecrawl</a
-    >
-  </sub>
+  <div
+    *ngIf="selectedCoffeeShop != null; then coffeeBlock; else overviewBlock"
+  ></div>
+  <ng-template #coffeeBlock>
+    <div class="coffee-header">
+      <md-icon (click)="clearCoffeeShop()">arrow_back_ios</md-icon>
+      <h3 style="flex-grow: 2; text-align: center">
+        {{ selectedCoffeeShop?.name }}
+      </h3>
+    </div>
+    data here
+  </ng-template>
+  <ng-template #overviewBlock>
+    <h1 style="font-weight: 100; font-style: italic">
+      Davao Coffee Crawl 2023
+    </h1>
+    <md-list>
+      <ng-container *ngFor="let coffee of coffeeShops; index as i">
+        <md-list-item (click)="flyToCoffeeShop(i)">
+          <div slot="headline">
+            <h3 style="font-weight: 100">{{ coffee.name }}</h3>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+      </ng-container>
+    </md-list>
+    <sub style="font-weight: 400; padding: 16px">
+      <a href="https://www.facebook.com/davaocoffeecrawl"
+        >facebook.com/davaocoffeecrawl</a
+      >
+    </sub>
+  </ng-template>
+
   <!-- <button type="button" (click)="onSelect()">check camera specs</button>
   <button type="button" (click)="pauseFlight()">pause flight</button>
   <button type="button" (click)="resumeFlight()">resume flight</button>

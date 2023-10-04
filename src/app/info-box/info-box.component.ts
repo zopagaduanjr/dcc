@@ -16,6 +16,7 @@ export class InfoBoxComponent {
 
   dataService?: DataService;
   coffeeShops: Array<CoffeeShop> = coffeeshops;
+  selectedCoffeeShop?: CoffeeShop;
   position?: string;
   right?: string;
   up?: string;
@@ -48,5 +49,10 @@ export class InfoBoxComponent {
     this.dataService?.viewer?.flyTo(coffeeShopEntity, {
       offset: new Cesium.HeadingPitchRange(heading, pitch, 0),
     });
+    this.selectedCoffeeShop = this.coffeeShops[index];
+  }
+
+  clearCoffeeShop() {
+    this.selectedCoffeeShop = undefined;
   }
 }
