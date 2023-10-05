@@ -45,7 +45,9 @@ export class InfoBoxComponent {
     var heading = this.dataService?.viewer?.camera.heading;
     var pitch = this.dataService?.viewer?.camera.pitch;
     var coffeeShopEntity = this.dataService?.entities[index]!;
-    this.dataService?.overviewSweepRemoveCallback!();
+    if (this.dataService?.overviewSweepRemoveCallback != undefined) {
+      this.dataService?.overviewSweepRemoveCallback!();
+    }
     this.dataService?.viewer?.flyTo(coffeeShopEntity, {
       offset: new Cesium.HeadingPitchRange(heading, pitch, 0),
     });
