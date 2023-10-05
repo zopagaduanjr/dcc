@@ -24,6 +24,8 @@ export const coffeeshops: CoffeeShop[] = [
       "Sunday: 8:00 AM – 8:00 PM",
     ],
     recommendations: ["Spanish Cold Brew"],
+    facebook: "https://www.facebook.com/atCurbside/",
+    instagram: "https://www.instagram.com/atcurbside/",
   },
   {
     name: "Cafe Prelaya by The Joaquins’ Cheesecakes",
@@ -47,6 +49,8 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 12:00 – 10:00 PM",
       "Sunday: 12:00 – 10:00 PM",
     ],
+    facebook: "https://www.facebook.com/cafeprelaya/",
+    instagram: "https://www.instagram.com/cafeprelaya/",
   },
   {
     name: "Darkk Coffee Co.",
@@ -70,6 +74,9 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 10:00 AM – 6:00 PM",
       "Sunday: 9:00 AM – 6:00 PM",
     ],
+    recommendations: ["Filter Coffee"],
+    facebook: "https://www.facebook.com/shotmeinmyhead/",
+    instagram: "https://www.instagram.com/darkkcoffee.co/",
   },
   {
     name: "FOURTH STREET CAFE",
@@ -93,6 +100,9 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 6:30 AM – 11:00 PM",
       "Sunday: 6:30 AM – 11:00 PM",
     ],
+    recommendations: ["0104", "Spanish Latte", "White"],
+    facebook: "https://www.facebook.com/fourthstreetcafedvo",
+    instagram: "https://www.instagram.com/fourthstreetcafedvo/",
   },
   {
     name: "Hid'n Coffee",
@@ -116,6 +126,9 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 6:00 AM – 9:00 PM",
       "Sunday: 6:00 AM – 9:00 PM",
     ],
+    recommendations: ["Milo Espresso"],
+    facebook: "https://www.facebook.com/hidncoffeedavao/",
+    instagram: "https://www.instagram.com/hidncoffeedvo/",
   },
   {
     name: "HisHer by Purge Coffee",
@@ -139,6 +152,8 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 10:00 AM – 9:00 PM",
       "Sunday: 10:00 AM – 9:00 PM",
     ],
+    recommendations: ["White Peak Cold Brew", "Filter Pourover"],
+    instagram: "https://www.instagram.com/hisherph/",
   },
   {
     name: "Lerus Coffee",
@@ -162,6 +177,9 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 1:00 – 9:00 PM",
       "Sunday: 1:00 – 9:00 PM",
     ],
+    recommendations: ["Einspänner"],
+    facebook: "https://www.facebook.com/leruscoffee/",
+    instagram: "https://www.instagram.com/leruscoffee/",
   },
   {
     name: "olo. Coffee And Concepts",
@@ -185,6 +203,8 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 11:00 AM – 7:00 PM",
       "Sunday: Closed",
     ],
+    recommendations: ["Freddo Espresso"],
+    instagram: "https://www.instagram.com/olo.coffee/",
   },
   {
     name: "REVEL by Confex",
@@ -208,6 +228,9 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 1:00 – 9:00 PM",
       "Sunday: Closed",
     ],
+    recommendations: ["Tableya Mocha"],
+    facebook: "https://www.facebook.com/revelbyconfex",
+    instagram: "https://www.instagram.com/revelbyconfex/",
   },
   {
     name: "Balay Juice & Coffee Co.",
@@ -232,6 +255,8 @@ export const coffeeshops: CoffeeShop[] = [
       "Sunday: 9:30 AM – 8:30 PM",
     ],
     recommendations: ["Iced White Mocha", "Cold Brew Drink"],
+    facebook: "https://www.facebook.com/balay.davao/",
+    instagram: "https://www.instagram.com/balay.dvo/",
   },
   {
     name: "Espresso Lab Cafe",
@@ -255,6 +280,9 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 9:00 AM – 10:00 PM",
       "Sunday: 9:00 AM – 10:00 PM",
     ],
+    recommendations: ["White Fusion"],
+    facebook: "https://www.facebook.com/espressolab.ph/",
+    instagram: "https://www.instagram.com/espressolab.dvo/",
   },
   {
     name: "espresson",
@@ -278,6 +306,9 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 9:00 AM – 8:00 PM",
       "Sunday: 9:00 AM – 8:00 PM",
     ],
+    recommendations: ["Butterscotch Latte"],
+    facebook: "https://www.facebook.com/EspressonMobileDvo/",
+    instagram: "https://www.instagram.com/espressondvo/",
   },
   {
     name: "Glasshouse Coffee",
@@ -301,6 +332,8 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 9:00 AM – 9:00 PM",
       "Sunday: 9:00 AM – 7:00 PM",
     ],
+    recommendations: ["Single Origin Pourover"],
+    instagram: "https://www.instagram.com/glasshousecoffeeph/",
   },
   {
     name: "Glasshouse Coffee",
@@ -324,6 +357,8 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 9:00 AM – 12:00 AM",
       "Sunday: 9:00 AM – 12:00 AM",
     ],
+    recommendations: ["Single Origin Pourover"],
+    instagram: "https://www.instagram.com/glasshousecoffeeph/",
   },
   {
     name: "Kanto Coffee",
@@ -347,6 +382,9 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 9:00 AM – 9:00 PM",
       "Sunday: 9:00 AM – 9:00 PM",
     ],
+    recommendations: ["Espresso"],
+    facebook: "https://www.facebook.com/kantocoffee/",
+    instagram: "https://www.instagram.com/kanto_coffee/",
   },
   {
     name: "Lot 38 Kape",
@@ -370,6 +408,9 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 1:00 – 9:00 PM",
       "Sunday: Closed",
     ],
+    recommendations: ["Europa", "Filter Pourover"],
+    facebook: "https://www.facebook.com/lot38dvo/",
+    instagram: "https://www.instagram.com/lot38kape/",
   },
   {
     name: "MYLK Cafe",
@@ -393,6 +434,9 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 7:00 AM – 9:00 PM",
       "Sunday: 7:00 AM – 9:00 PM",
     ],
+    recommendations: ["Vanilla Bean Latte"],
+    facebook: "https://www.facebook.com/mylkcafeph",
+    instagram: "https://www.instagram.com/mylkcafeph/",
   },
   {
     name: "Onse Kopi",
@@ -416,6 +460,9 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 9:00 AM – 10:00 PM",
       "Sunday: 9:00 AM – 10:00 PM",
     ],
+    recommendations: ["Grano"],
+    facebook: "https://www.facebook.com/p/Onse-kopi-100075606117955/",
+    instagram: "https://www.instagram.com/onse.kopi/",
   },
   {
     name: "VNL.DVO",
@@ -439,5 +486,7 @@ export const coffeeshops: CoffeeShop[] = [
       "Saturday: 8:00 AM – 7:00 PM",
       "Sunday: 2:00 – 8:00 PM",
     ],
+    recommendations: ["Campfire Latte"],
+    instagram: "https://www.instagram.com/vnl.dvo/",
   },
 ];

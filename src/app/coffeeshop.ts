@@ -6,6 +6,8 @@ export interface CoffeeShop {
   formatted_address: string;
   weekday_text: Array<string>;
   recommendations?: Array<string>;
+  facebook?: string;
+  instagram?: string;
 }
 
 interface Geometry {

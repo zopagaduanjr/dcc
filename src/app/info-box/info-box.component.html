@@ -5,9 +5,16 @@
   <ng-template #coffeeBlock>
     <div class="coffee-header">
       <md-icon (click)="clearCoffeeShop()"> arrow_back_ios</md-icon>
-      <h3 style="flex-grow: 2; text-align: center">
+      <div
+        style="
+          flex-grow: 2;
+          text-align: center;
+          font-weight: 100;
+          font-size: 30px;
+        "
+      >
         {{ selectedCoffeeShop?.name }}
-      </h3>
+      </div>
     </div>
     <md-list>
       <md-list-item>
@@ -25,13 +32,12 @@
       <md-list-item>
         <div slot="headline">Opening Hours</div>
         <md-icon slot="start">schedule</md-icon>
+        <div slot="supporting-text">
+          <ng-container *ngFor="let hour of selectedCoffeeShop?.weekday_text">
+            <div>{{ hour }}</div>
+          </ng-container>
+        </div>
       </md-list-item>
-      <ng-container *ngFor="let hour of selectedCoffeeShop?.weekday_text">
-        <md-list-item>
-          <div slot="headline">{{ hour }}</div>
-          <md-icon slot="start"></md-icon>
-        </md-list-item>
-      </ng-container>
       <md-list-item>
         <div slot="headline">
           <a href="https://www.facebook.com/atCurbside" target="_blank"

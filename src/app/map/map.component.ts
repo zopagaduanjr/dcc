@@ -69,6 +69,9 @@ export class MapComponent implements OnInit {
       // );
       throw new Error("dont load maptiles");
     } catch (e) {
+      const osm = new Cesium.OpenStreetMapImageryProvider({
+        url: "https://tile.openstreetmap.org/",
+      });
       this.viewerOptions = {
         baseLayerPicker: false,
         homeButton: false,
@@ -81,6 +84,7 @@ export class MapComponent implements OnInit {
         navigationHelpButton: false,
         selectionIndicator: false,
         infoBox: false,
+        baseLayer: new Cesium.ImageryLayer(osm, {}),
       };
       Cesium.Ion.defaultAccessToken = environment.cesiumToken;
       this.elevationMarkerOffset = 0;
