@@ -11,6 +11,19 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 16.04643440246582,
+    logo: "./assets/atcurbside.jpg",
+    formatted_address:
+      "Phase I, Marfori Heights, 77 Topaz St, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 7:00 AM – 8:00 PM",
+      "Tuesday: 7:00 AM – 8:00 PM",
+      "Wednesday: 7:00 AM – 8:00 PM",
+      "Thursday: 7:00 AM – 8:00 PM",
+      "Friday: 7:00 AM – 8:00 PM",
+      "Saturday: 7:00 AM – 8:00 PM",
+      "Sunday: 8:00 AM – 8:00 PM",
+    ],
+    recommendations: ["Spanish Cold Brew"],
   },
   {
     name: "Cafe Prelaya by The Joaquins’ Cheesecakes",
@@ -22,6 +35,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.237552642822266,
+    logo: "./assets/cafe_prelaya.jpg",
+    formatted_address:
+      "Sputnik St, Poblacion District, Davao City, Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 12:00 – 10:00 PM",
+      "Tuesday: 12:00 – 10:00 PM",
+      "Wednesday: 12:00 – 10:00 PM",
+      "Thursday: 12:00 – 10:00 PM",
+      "Friday: 12:00 – 10:00 PM",
+      "Saturday: 12:00 – 10:00 PM",
+      "Sunday: 12:00 – 10:00 PM",
+    ],
   },
   {
     name: "Darkk Coffee Co.",
@@ -33,6 +58,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 6.45668888092041,
+    logo: "./assets/darkkk.jpg",
+    formatted_address:
+      "91-73, Teodoro Palma Gil St, Poblacion District, Davao City, Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: Closed",
+      "Tuesday: 10:00 AM – 6:00 PM",
+      "Wednesday: 10:00 AM – 6:00 PM",
+      "Thursday: 10:00 AM – 6:00 PM",
+      "Friday: 10:00 AM – 6:00 PM",
+      "Saturday: 10:00 AM – 6:00 PM",
+      "Sunday: 9:00 AM – 6:00 PM",
+    ],
   },
   {
     name: "FOURTH STREET CAFE",
@@ -44,6 +81,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 6.199999809265137,
+    logo: "./assets/fourth_street.jpg",
+    formatted_address:
+      "Fourth Street Cafe, Narra Street Barangay, 3JF8+PQG, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 6:30 AM – 11:00 PM",
+      "Tuesday: 6:30 AM – 11:00 PM",
+      "Wednesday: 6:30 AM – 11:00 PM",
+      "Thursday: 6:30 AM – 11:00 PM",
+      "Friday: 6:30 AM – 11:00 PM",
+      "Saturday: 6:30 AM – 11:00 PM",
+      "Sunday: 6:30 AM – 11:00 PM",
+    ],
   },
   {
     name: "Hid'n Coffee",
@@ -55,7 +104,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 7.885401725769043,
-    logo: "https://storage.googleapis.com/coffee_icon/hdn.png",
+    logo: "./assets/hidden_coffee.jpg",
+    formatted_address:
+      "Palm Village, Nicasio Torres St, Obrero, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 1:00 – 9:00 PM",
+      "Tuesday: 1:00 – 9:00 PM",
+      "Wednesday: 1:00 – 9:00 PM",
+      "Thursday: 6:00 AM – 9:00 PM",
+      "Friday: 6:00 AM – 9:00 PM",
+      "Saturday: 6:00 AM – 9:00 PM",
+      "Sunday: 6:00 AM – 9:00 PM",
+    ],
   },
   {
     name: "HisHer by Purge Coffee",
@@ -67,6 +127,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 7.183873653411865,
+    logo: "./assets/his_her.jpg",
+    formatted_address:
+      "Unit 1 Upper Ground Floor, Azuela Cove, G-Center, Lanang, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 10:00 AM – 9:00 PM",
+      "Tuesday: 10:00 AM – 9:00 PM",
+      "Wednesday: 10:00 AM – 9:00 PM",
+      "Thursday: 10:00 AM – 9:00 PM",
+      "Friday: 10:00 AM – 9:00 PM",
+      "Saturday: 10:00 AM – 9:00 PM",
+      "Sunday: 10:00 AM – 9:00 PM",
+    ],
   },
   {
     name: "Lerus Coffee",
@@ -78,6 +150,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 6.597042560577393,
+    logo: "./assets/lerus.jpg",
+    formatted_address:
+      "Door A, Lim Building, Lacson, beside Paper Bowl, cor Cervantes St, Bo. Obrero, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: Closed",
+      "Tuesday: 1:00 – 9:00 PM",
+      "Wednesday: 1:00 – 9:00 PM",
+      "Thursday: 1:00 – 9:00 PM",
+      "Friday: 1:00 – 9:00 PM",
+      "Saturday: 1:00 – 9:00 PM",
+      "Sunday: 1:00 – 9:00 PM",
+    ],
   },
   {
     name: "olo. Coffee And Concepts",
@@ -89,6 +173,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.018280982971191,
+    logo: "./assets/olo.jpg",
+    formatted_address:
+      "319, ecoland, Phase 1, 6 A st, Talomo, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 11:00 AM – 7:00 PM",
+      "Tuesday: 11:00 AM – 7:00 PM",
+      "Wednesday: 11:00 AM – 7:00 PM",
+      "Thursday: 11:00 AM – 7:00 PM",
+      "Friday: 11:00 AM – 7:00 PM",
+      "Saturday: 11:00 AM – 7:00 PM",
+      "Sunday: Closed",
+    ],
   },
   {
     name: "REVEL by Confex",
@@ -100,6 +196,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.355263710021973,
+    logo: "./assets/revel.jpg",
+    formatted_address:
+      "DBP Village, Don Julian Rodriguez Sr. Ave, Talomo, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 1:00 – 9:00 PM",
+      "Tuesday: 1:00 – 9:00 PM",
+      "Wednesday: 1:00 – 9:00 PM",
+      "Thursday: 1:00 – 9:00 PM",
+      "Friday: 1:00 – 9:00 PM",
+      "Saturday: 1:00 – 9:00 PM",
+      "Sunday: Closed",
+    ],
   },
   {
     name: "Balay Juice & Coffee Co.",
@@ -111,6 +219,19 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 6.636610507965088,
+    logo: "./assets/balay.jpg",
+    formatted_address:
+      "20E Teodoro Palma Gil St, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 10:30 AM – 8:30 PM",
+      "Tuesday: 10:30 AM – 8:30 PM",
+      "Wednesday: 10:30 AM – 8:30 PM",
+      "Thursday: 10:30 AM – 8:30 PM",
+      "Friday: 10:30 AM – 9:30 PM",
+      "Saturday: 9:30 AM – 9:30 PM",
+      "Sunday: 9:30 AM – 8:30 PM",
+    ],
+    recommendations: ["Iced White Mocha", "Cold Brew Drink"],
   },
   {
     name: "Espresso Lab Cafe",
@@ -122,6 +243,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 7.639552116394043,
+    logo: "./assets/espresso_lab.jpg",
+    formatted_address:
+      "The Lanang Suites Hotel, Ground Floor, J.P. Laurel Ave, Agdao, Davao City, Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 9:00 AM – 10:00 PM",
+      "Tuesday: 9:00 AM – 10:00 PM",
+      "Wednesday: 9:00 AM – 10:00 PM",
+      "Thursday: 9:00 AM – 10:00 PM",
+      "Friday: 9:00 AM – 10:00 PM",
+      "Saturday: 9:00 AM – 10:00 PM",
+      "Sunday: 9:00 AM – 10:00 PM",
+    ],
   },
   {
     name: "espresson",
@@ -133,6 +266,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 6.199999809265137,
+    logo: "./assets/espresson.jpg",
+    formatted_address:
+      "89 Jacinto, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 9:00 AM – 8:00 PM",
+      "Tuesday: 9:00 AM – 8:00 PM",
+      "Wednesday: 9:00 AM – 8:00 PM",
+      "Thursday: 9:00 AM – 8:00 PM",
+      "Friday: 9:00 AM – 8:00 PM",
+      "Saturday: 9:00 AM – 8:00 PM",
+      "Sunday: 9:00 AM – 8:00 PM",
+    ],
   },
   {
     name: "Glasshouse Coffee",
@@ -144,6 +289,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.177531242370605,
+    logo: "./assets/glasshouse.jpg",
+    formatted_address:
+      "At the Garden of Oboza Heritage House, 143, Rizal St, Poblacion District, Davao City, Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 9:00 AM – 7:00 PM",
+      "Tuesday: 9:00 AM – 9:00 PM",
+      "Wednesday: 9:00 AM – 9:00 PM",
+      "Thursday: 9:00 AM – 9:00 PM",
+      "Friday: 9:00 AM – 9:00 PM",
+      "Saturday: 9:00 AM – 9:00 PM",
+      "Sunday: 9:00 AM – 7:00 PM",
+    ],
   },
   {
     name: "Glasshouse Coffee",
@@ -155,6 +312,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.160253524780273,
+    logo: "./assets/glasshouse.jpg",
+    formatted_address:
+      "4 J.P. Laurel Ave, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 9:00 AM – 12:00 AM",
+      "Tuesday: 9:00 AM – 12:00 AM",
+      "Wednesday: 9:00 AM – 12:00 AM",
+      "Thursday: 9:00 AM – 12:00 AM",
+      "Friday: 9:00 AM – 12:00 AM",
+      "Saturday: 9:00 AM – 12:00 AM",
+      "Sunday: 9:00 AM – 12:00 AM",
+    ],
   },
   {
     name: "Kanto Coffee",
@@ -166,6 +335,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.62789535522461,
+    logo: "./assets/kanto.jpg",
+    formatted_address:
+      "Road 1 Bajada Flyover, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 9:00 AM – 9:00 PM",
+      "Tuesday: 9:00 AM – 9:00 PM",
+      "Wednesday: 9:00 AM – 9:00 PM",
+      "Thursday: 9:00 AM – 9:00 PM",
+      "Friday: 9:00 AM – 9:00 PM",
+      "Saturday: 9:00 AM – 9:00 PM",
+      "Sunday: 9:00 AM – 9:00 PM",
+    ],
   },
   {
     name: "Lot 38 Kape",
@@ -177,6 +358,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 97.25406646728516,
+    logo: "./assets/lot_38.jpg",
+    formatted_address:
+      "Lot 38 Block 4 Phase 1, Deca Homes Indangan, Block 4, Lot 1, Phase I, Buhangin, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: Closed",
+      "Tuesday: 12:00 – 7:00 PM",
+      "Wednesday: 12:00 – 7:00 PM",
+      "Thursday: 12:00 – 7:00 PM",
+      "Friday: 12:00 – 7:00 PM",
+      "Saturday: 1:00 – 9:00 PM",
+      "Sunday: Closed",
+    ],
   },
   {
     name: "MYLK Cafe",
@@ -188,6 +381,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 14.06391334533691,
+    logo: "./assets/mylk.jpg",
+    formatted_address:
+      "Values School Building, Marfori Heights, Ruby St, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 7:00 AM – 9:00 PM",
+      "Tuesday: 7:00 AM – 9:00 PM",
+      "Wednesday: 7:00 AM – 9:00 PM",
+      "Thursday: 7:00 AM – 9:00 PM",
+      "Friday: 7:00 AM – 9:00 PM",
+      "Saturday: 7:00 AM – 9:00 PM",
+      "Sunday: 7:00 AM – 9:00 PM",
+    ],
   },
   {
     name: "Onse Kopi",
@@ -199,6 +404,18 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.188749313354492,
+    logo: "./assets/onse.jpg",
+    formatted_address:
+      "Quimpo Blvd, Talomo, Davao City, Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 9:00 AM – 10:00 PM",
+      "Tuesday: 9:00 AM – 10:00 PM",
+      "Wednesday: 9:00 AM – 10:00 PM",
+      "Thursday: 9:00 AM – 10:00 PM",
+      "Friday: 9:00 AM – 10:00 PM",
+      "Saturday: 9:00 AM – 10:00 PM",
+      "Sunday: 9:00 AM – 10:00 PM",
+    ],
   },
   {
     name: "VNL.DVO",
@@ -210,5 +427,17 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 6.166751861572266,
+    logo: "./assets/vnl.jpg",
+    formatted_address:
+      "VNL DVO, Obrero One Palma Gil Building, One Teodoro Palma Gil St, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
+    weekday_text: [
+      "Monday: 8:00 AM – 7:00 PM",
+      "Tuesday: 8:00 AM – 7:00 PM",
+      "Wednesday: 8:00 AM – 7:00 PM",
+      "Thursday: 8:00 AM – 7:00 PM",
+      "Friday: 8:00 AM – 7:00 PM",
+      "Saturday: 8:00 AM – 7:00 PM",
+      "Sunday: 2:00 – 8:00 PM",
+    ],
   },
 ];

@@ -3,6 +3,9 @@ export interface CoffeeShop {
   geometry: Geometry;
   elevation: number;
   logo?: string;
+  formatted_address: string;
+  weekday_text: Array<string>;
+  recommendations?: Array<string>;
 }
 
 interface Geometry {

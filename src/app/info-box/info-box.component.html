@@ -9,20 +9,29 @@
         {{ selectedCoffeeShop?.name }}
       </h3>
     </div>
-    data here
-    <br />
     <md-list>
       <md-list-item>
         <div slot="headline">
-          Phase I, Marfori Heights, 77 Topaz St, Poblacion District, Davao City,
-          8000 Davao del Sur, Philippines
+          {{ selectedCoffeeShop?.formatted_address }}
         </div>
         <md-icon slot="start">location_on</md-icon>
       </md-list-item>
+      <ng-container *ngFor="let reco of selectedCoffeeShop?.recommendations">
+        <md-list-item>
+          <div slot="headline">{{ reco }}</div>
+          <md-icon slot="start">thumb_up</md-icon>
+        </md-list-item>
+      </ng-container>
       <md-list-item>
-        <div slot="headline">Spanish Cold Brew</div>
-        <md-icon slot="start">thumb_up</md-icon>
+        <div slot="headline">Opening Hours</div>
+        <md-icon slot="start">schedule</md-icon>
       </md-list-item>
+      <ng-container *ngFor="let hour of selectedCoffeeShop?.weekday_text">
+        <md-list-item>
+          <div slot="headline">{{ hour }}</div>
+          <md-icon slot="start"></md-icon>
+        </md-list-item>
+      </ng-container>
       <md-list-item>
         <div slot="headline">
           <a href="https://www.facebook.com/atCurbside" target="_blank"

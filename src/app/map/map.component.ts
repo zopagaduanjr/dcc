@@ -52,9 +52,10 @@ export class MapComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.setupViewer();
     coffeeshops.forEach((e) => this.createMarker(e));
-    setTimeout(() => {
-      this.rotateCamera2();
-    }, 5000);
+    this.rotateCamera2();
+    // setTimeout(() => {
+    //   this.rotateCamera2();
+    // }, 5000);
   }
 
   async setupViewer(): Promise<void> {
