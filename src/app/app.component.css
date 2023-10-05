@@ -1,0 +1,11 @@
+.navigation-help {
+  position: fixed;
+  top: 0;
+  right: 27%;
+}
+
+@media screen and (max-width: 540px) {
+  .navigation-help {
+    right: 0;
+  }
+}

@@ -16,7 +16,7 @@
 .info-box {
   --md-elevation-level: 5;
   --md-sys-color-shadow: #006a6a;
-  transition-duration: 1000ms;
+  transition-duration: 250ms;
   transition-timing-function: ease-in-out;
 }
 
@@ -33,10 +33,6 @@
     height: 25%;
     top: auto;
   }
-}
-
-.navigation-help {
-  align-self: flex-end;
 }
 
 .coffee-header {
