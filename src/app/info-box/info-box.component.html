@@ -38,10 +38,10 @@
           </ng-container>
         </div>
       </md-list-item>
-      <md-list-item>
+      <md-list-item *ngIf="selectedCoffeeShop?.facebook != null">
         <div slot="headline">
-          <a href="https://www.facebook.com/atCurbside" target="_blank"
-            >https://www.facebook.com/atCurbside
+          <a href="{{ selectedCoffeeShop?.facebook }}" target="_blank"
+            >{{ selectedCoffeeShop?.facebook?.replace("https://www.", "") }}
           </a>
         </div>
         <md-icon slot="start">
@@ -59,10 +59,10 @@
           </svg>
         </md-icon>
       </md-list-item>
-      <md-list-item>
+      <md-list-item *ngIf="selectedCoffeeShop?.instagram != null">
         <div slot="headline">
-          <a href="https://www.instagram.com/atcurbside" target="_blank"
-            >https://www.instagram.com/atcurbside
+          <a href="{{ selectedCoffeeShop?.instagram }}" target="_blank"
+            >{{ selectedCoffeeShop?.instagram?.replace("https://www.", "") }}
           </a>
         </div>
         <md-icon slot="start">
@@ -98,7 +98,7 @@
     </md-list>
     <sub style="font-weight: 400; padding: 16px">
       <a href="https://www.facebook.com/davaocoffeecrawl" target="_blank"
-        >facebook.com/davaocoffeecrawl</a
+        >The Davao Coffee Crawl</a
       >
     </sub>
   </ng-template>

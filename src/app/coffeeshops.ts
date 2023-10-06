@@ -11,7 +11,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 16.04643440246582,
-    logo: "./assets/atcurbside.jpg",
+    logo: "./assets/atcurbside.png",
     formatted_address:
       "Phase I, Marfori Heights, 77 Topaz St, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
@@ -37,7 +37,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.237552642822266,
-    logo: "./assets/cafe_prelaya.jpg",
+    logo: "./assets/prelaya.png",
     formatted_address:
       "Sputnik St, Poblacion District, Davao City, Davao del Sur, Philippines",
     weekday_text: [
@@ -62,7 +62,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 6.45668888092041,
-    logo: "./assets/darkkk.jpg",
+    logo: "./assets/darkk.png",
     formatted_address:
       "91-73, Teodoro Palma Gil St, Poblacion District, Davao City, Davao del Sur, Philippines",
     weekday_text: [
@@ -88,7 +88,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 6.199999809265137,
-    logo: "./assets/fourth_street.jpg",
+    logo: "./assets/fourth_street.png",
     formatted_address:
       "Fourth Street Cafe, Narra Street Barangay, 3JF8+PQG, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
@@ -114,7 +114,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 7.885401725769043,
-    logo: "./assets/hidden_coffee.jpg",
+    logo: "./assets/hidden.png",
     formatted_address:
       "Palm Village, Nicasio Torres St, Obrero, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
@@ -140,7 +140,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 7.183873653411865,
-    logo: "./assets/his_her.jpg",
+    logo: "./assets/his_her.png",
     formatted_address:
       "Unit 1 Upper Ground Floor, Azuela Cove, G-Center, Lanang, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
@@ -165,7 +165,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 6.597042560577393,
-    logo: "./assets/lerus.jpg",
+    logo: "./assets/lerus.png",
     formatted_address:
       "Door A, Lim Building, Lacson, beside Paper Bowl, cor Cervantes St, Bo. Obrero, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
@@ -191,7 +191,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.018280982971191,
-    logo: "./assets/olo.jpg",
+    logo: "./assets/olo.png",
     formatted_address:
       "319, ecoland, Phase 1, 6 A st, Talomo, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
@@ -216,7 +216,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.355263710021973,
-    logo: "./assets/revel.jpg",
+    logo: "./assets/revel.png",
     formatted_address:
       "DBP Village, Don Julian Rodriguez Sr. Ave, Talomo, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
@@ -242,7 +242,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 6.636610507965088,
-    logo: "./assets/balay.jpg",
+    logo: "./assets/balay.png",
     formatted_address:
       "20E Teodoro Palma Gil St, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
@@ -268,7 +268,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 7.639552116394043,
-    logo: "./assets/espresso_lab.jpg",
+    logo: "./assets/espresso_lab.png",
     formatted_address:
       "The Lanang Suites Hotel, Ground Floor, J.P. Laurel Ave, Agdao, Davao City, Davao del Sur, Philippines",
     weekday_text: [
@@ -294,7 +294,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 6.199999809265137,
-    logo: "./assets/espresson.jpg",
+    logo: "./assets/espresson.png",
     formatted_address:
       "89 Jacinto, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
@@ -320,7 +320,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.177531242370605,
-    logo: "./assets/glasshouse.jpg",
+    logo: "./assets/glasshouse.png",
     formatted_address:
       "At the Garden of Oboza Heritage House, 143, Rizal St, Poblacion District, Davao City, Davao del Sur, Philippines",
     weekday_text: [
@@ -345,7 +345,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.160253524780273,
-    logo: "./assets/glasshouse.jpg",
+    logo: "./assets/glasshouse.png",
     formatted_address:
       "4 J.P. Laurel Ave, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
@@ -370,7 +370,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.62789535522461,
-    logo: "./assets/kanto.jpg",
+    logo: "./assets/kanto.png",
     formatted_address:
       "Road 1 Bajada Flyover, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
@@ -396,7 +396,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 97.25406646728516,
-    logo: "./assets/lot_38.jpg",
+    logo: "./assets/lot_38.png",
     formatted_address:
       "Lot 38 Block 4 Phase 1, Deca Homes Indangan, Block 4, Lot 1, Phase I, Buhangin, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
@@ -422,7 +422,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 14.06391334533691,
-    logo: "./assets/mylk.jpg",
+    logo: "./assets/mylk.png",
     formatted_address:
       "Values School Building, Marfori Heights, Ruby St, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
@@ -448,7 +448,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 8.188749313354492,
-    logo: "./assets/onse.jpg",
+    logo: "./assets/onse.png",
     formatted_address:
       "Quimpo Blvd, Talomo, Davao City, Davao del Sur, Philippines",
     weekday_text: [
@@ -474,7 +474,7 @@ export const coffeeshops: CoffeeShop[] = [
       },
     },
     elevation: 6.166751861572266,
-    logo: "./assets/vnl.jpg",
+    logo: "./assets/vnl.png",
     formatted_address:
       "VNL DVO, Obrero One Palma Gil Building, One Teodoro Palma Gil St, Poblacion District, Davao City, 8000 Davao del Sur, Philippines",
     weekday_text: [
