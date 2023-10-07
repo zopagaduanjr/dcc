@@ -12,12 +12,13 @@ import { DataService } from "../services/data.service";
   styleUrls: ["./map.component.css"],
 })
 export class MapComponent implements OnInit {
-  coffeeShop: CoffeeShop = coffeeshops[0];
-  elevationMarkerOffset: number = 74;
-  elevationViewerOffset: number = 150;
-  currentOnTickStep: number = 0;
-  cameraSweepSteps: number = 400;
-  forward: boolean = true;
+  setAElevation: number = 90;
+  setBElevation: number = 50 + 50;
+  usePhotorealisticTiles: boolean = false;
+  elevationMarkerOffset: number = 74; //billboard offset, needed so that entity will not get buried in 3d tiles
+  currentOnTickStep: number = 0; //counter for sweeping camera
+  cameraSweepTickSteps: number = 400; //maximum sweeping camera tick
+  isForward: boolean = true; //flag to forward/reverse camera
   viewerOptions: Cesium.Viewer.ConstructorOptions = {
     globe: false,
     baseLayerPicker: false,
@@ -52,12 +53,9 @@ export class MapComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.setupViewer();
-    coffeeshops.forEach((e) => this.createMarker(e));
-    // this.rotateCamera2();
+    this.generateMarkers();
+    this.startMovingCamera();
     this.createPath();
-    // setTimeout(() => {
-    //   this.rotateCamera2();
-    // }, 5000);
   }
 
   async setupViewer(): Promise<void> {
@@ -66,11 +64,15 @@ export class MapComponent implements OnInit {
     };
     var tileset = null;
     try {
-      // tileset = await Cesium.Cesium3DTileset.fromUrl(
-      //   `https://tile.googleapis.com/v1/3dtiles/root.json?key=${environment.googleMap.mapTiles}`
-      // );
-      throw new Error("dont load maptiles");
+      if (this.usePhotorealisticTiles) {
+        tileset = await Cesium.Cesium3DTileset.fromUrl(
+          `https://tile.googleapis.com/v1/3dtiles/root.json?key=${environment.googleMap.mapTiles}`
+        );
+      } else {
+        throw new Error("dont load maptiles");
+      }
     } catch (e) {
+      //google maps photorealistic quota exhausted
       const osm = new Cesium.OpenStreetMapImageryProvider({
         url: "https://tile.openstreetmap.org/",
       });
@@ -95,7 +97,6 @@ export class MapComponent implements OnInit {
     if (tileset != null) {
       this.viewer.scene.primitives.add(tileset);
     }
-
     this.viewer.camera.setView({
       destination: this.overViewCartesian3,
       orientation: this.overViewOrientation,
@@ -103,6 +104,10 @@ export class MapComponent implements OnInit {
     if (this.dataService != null) {
       this.dataService.viewer = this.viewer;
     }
+  }
+
+  generateMarkers() {
+    coffeeshops.forEach((e) => this.createMarker(e));
   }
 
   createMarker(shop: CoffeeShop): void {
@@ -134,7 +139,7 @@ export class MapComponent implements OnInit {
     this.dataService?.entities.push(entity!);
   }
 
-  rotateCamera2(): void {
+  startMovingCamera(): void {
     var heading = this.viewer?.camera.heading;
     var pitch = this.viewer?.camera.pitch;
     var range = this.viewer?.camera.positionCartographic.height;
@@ -143,13 +148,16 @@ export class MapComponent implements OnInit {
       new Cesium.HeadingPitchRange(heading, pitch, range)
     );
     var removeCallBack = this.viewer?.clock.onTick.addEventListener(() => {
-      if (this.currentOnTickStep == this.cameraSweepSteps) {
-        this.forward = false;
+      if (this.currentOnTickStep == this.cameraSweepTickSteps) {
+        this.isForward = false;
       }
       if (this.currentOnTickStep == 0) {
-        this.forward = true;
+        this.isForward = true;
       }
-      if (this.currentOnTickStep < this.cameraSweepSteps && this.forward) {
+      if (
+        this.currentOnTickStep < this.cameraSweepTickSteps &&
+        this.isForward
+      ) {
         this.currentOnTickStep = this.currentOnTickStep + 1;
         this.viewer?.camera.moveRight(30);
         this.viewer?.camera.rotate(Cesium.Cartesian3.UNIT_Z, -0.002);
@@ -167,7 +175,7 @@ export class MapComponent implements OnInit {
     }, Cesium.ScreenSpaceEventType.LEFT_DOWN);
   }
 
-  setViewerClock2(): void {
+  setViewerClock(): void {
     const start = Cesium.JulianDate.fromDate(new Date(2015, 2, 25, 16));
     const stop = Cesium.JulianDate.addSeconds(
       start,
@@ -179,43 +187,47 @@ export class MapComponent implements OnInit {
       this.viewer.clock.stopTime = stop.clone();
       this.viewer.clock.currentTime = start.clone();
       this.viewer.clock.clockRange = Cesium.ClockRange.LOOP_STOP; //Loop at the end
-      this.viewer.clock.multiplier = 1;
+      this.viewer.clock.multiplier = 5;
     }
   }
 
-  setPath(): Cesium.SampledPositionProperty {
+  generatePolylinePaths(
+    isSetA: boolean = true
+  ): Cesium.SampledPositionProperty {
     const start = Cesium.JulianDate.fromDate(new Date(2015, 2, 25, 16));
     const property = new Cesium.SampledPositionProperty();
-    for (let i = 0; i < setA.length; i += 1) {
+    var polylines = isSetA ? setA : [];
+    var elevation = isSetA ? this.setAElevation : this.setBElevation;
+    for (let i = 0; i < polylines.length; i += 1) {
       const time = Cesium.JulianDate.addSeconds(
         start,
         i,
         new Cesium.JulianDate()
       );
       const position = Cesium.Cartesian3.fromDegrees(
-        setA[i][1],
-        setA[i][0],
-        90
+        polylines[i][1],
+        polylines[i][0],
+        elevation
       );
-      console.log(setA[i][1], setA[i][0]);
       property.addSample(time, position);
     }
     property.setInterpolationOptions({
       interpolationDegree: 3,
       interpolationAlgorithm: Cesium.HermitePolynomialApproximation,
     });
+    //TODO: make property const so that it won't calculate every time
     return property;
   }
 
   createPath(): void {
-    this.setViewerClock2();
+    this.setViewerClock();
     const start = Cesium.JulianDate.fromDate(new Date(2015, 2, 25, 16));
     const stop = Cesium.JulianDate.addSeconds(
       start,
       600,
       new Cesium.JulianDate()
     );
-    const position = this.setPath();
+    const position = this.generatePolylinePaths();
     const entity = this.viewer?.entities.add({
       availability: new Cesium.TimeIntervalCollection([
         new Cesium.TimeInterval({
