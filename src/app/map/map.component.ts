@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from "@angular/core";
 import * as Cesium from "cesium";
 import { environment } from "src/environments/environment";
 import { coffeeshops } from "../coffeeshops";
+import { setA } from "../coffeeroutes";
 import { CoffeeShop } from "../coffeeshop";
 import { DataService } from "../services/data.service";
 
@@ -52,7 +53,8 @@ export class MapComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.setupViewer();
     coffeeshops.forEach((e) => this.createMarker(e));
-    this.rotateCamera2();
+    // this.rotateCamera2();
+    this.createPath();
     // setTimeout(() => {
     //   this.rotateCamera2();
     // }, 5000);
@@ -212,7 +214,7 @@ export class MapComponent implements OnInit {
       this.viewer.clock.stopTime = stop.clone();
       this.viewer.clock.currentTime = start.clone();
       this.viewer.clock.clockRange = Cesium.ClockRange.LOOP_STOP; //Loop at the end
-      this.viewer.clock.multiplier = 1;
+      this.viewer.clock.multiplier = 10;
     }
   }
 
@@ -344,5 +346,99 @@ export class MapComponent implements OnInit {
       removeCallBack!();
       this.viewer?.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
     }, Cesium.ScreenSpaceEventType.LEFT_DOWN);
+  }
+
+  setViewerClock2(): void {
+    const start = Cesium.JulianDate.fromDate(new Date(2015, 2, 25, 16));
+    const stop = Cesium.JulianDate.addSeconds(
+      start,
+      600,
+      new Cesium.JulianDate()
+    );
+    if (this.viewer != null) {
+      this.viewer.clock.startTime = start.clone();
+      this.viewer.clock.stopTime = stop.clone();
+      this.viewer.clock.currentTime = start.clone();
+      this.viewer.clock.clockRange = Cesium.ClockRange.LOOP_STOP; //Loop at the end
+      this.viewer.clock.multiplier = 1;
+    }
+  }
+
+  setPath(): Cesium.SampledPositionProperty {
+    const start = Cesium.JulianDate.fromDate(new Date(2015, 2, 25, 16));
+    const property = new Cesium.SampledPositionProperty();
+    for (let i = 0; i < setA.length; i += 1) {
+      const time = Cesium.JulianDate.addSeconds(
+        start,
+        i,
+        new Cesium.JulianDate()
+      );
+      const position = Cesium.Cartesian3.fromDegrees(
+        setA[i][1],
+        setA[i][0],
+        90
+      );
+      console.log(setA[i][1], setA[i][0]);
+      property.addSample(time, position);
+    }
+    property.setInterpolationOptions({
+      interpolationDegree: 3,
+      interpolationAlgorithm: Cesium.HermitePolynomialApproximation,
+    });
+    return property;
+  }
+
+  createPath(): void {
+    this.setViewerClock2();
+    const start = Cesium.JulianDate.fromDate(new Date(2015, 2, 25, 16));
+    const stop = Cesium.JulianDate.addSeconds(
+      start,
+      600,
+      new Cesium.JulianDate()
+    );
+    const position = this.setPath();
+    const entity = this.viewer?.entities.add({
+      availability: new Cesium.TimeIntervalCollection([
+        new Cesium.TimeInterval({
+          start: start,
+          stop: stop,
+        }),
+      ]),
+      position: position,
+      orientation: new Cesium.VelocityOrientationProperty(position),
+      point: {
+        pixelSize: 5,
+        color: Cesium.Color.WHITE,
+        outlineColor: Cesium.Color.WHITE,
+        outlineWidth: 2,
+      },
+      path: {
+        resolution: 1,
+        material: new Cesium.PolylineGlowMaterialProperty({
+          glowPower: 0.2,
+          color: Cesium.Color.YELLOW,
+        }),
+        width: 10,
+      },
+    });
+  }
+
+  createPath2(): void {
+    var polylines = new Cesium.PolylineCollection();
+    var zed = setA.map((e) => {
+      return e[1], e[0];
+    });
+    polylines.add({
+      positions: Cesium.Cartesian3.fromDegreesArray(zed),
+      width: 4,
+      material: Cesium.Color.RED,
+    });
+    var wee = this.viewer?.entities.add({ polyline: polylines });
+    this.viewer?.flyTo(wee!);
+    // this.viewer?.scene.primitives.add(polylines);
+  }
+
+  createPath3(): void {
+    this.viewer?.entities.add({});
   }
 }
