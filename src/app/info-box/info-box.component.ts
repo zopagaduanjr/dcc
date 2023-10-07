@@ -17,29 +17,6 @@ export class InfoBoxComponent {
   dataService?: DataService;
   coffeeShops: Array<CoffeeShop> = coffeeshops;
   selectedCoffeeShop?: CoffeeShop;
-  position?: string;
-  right?: string;
-  up?: string;
-  direction?: string;
-
-  onSelect(): void {
-    this.position =
-      "Position" + this.dataService?.viewer?.camera.position.toString();
-    this.right =
-      "heading" + this.dataService?.viewer?.camera.heading.toString();
-    this.up = "pitch" + this.dataService?.viewer?.camera.pitch.toString();
-    this.direction =
-      "directionWC" + this.dataService?.viewer?.camera.directionWC.toString();
-  }
-
-  pauseFlight(): void {
-    this.dataService!.toggleInitialCameraInterpol!(false);
-    // this.dataService!.cancelInitialCameraInterpol!();
-  }
-  resumeFlight(): void {
-    this.dataService!.toggleInitialCameraInterpol!(true);
-    // this.dataService!.startInitialCameraInterpol.next(true);
-  }
 
   flyToCoffeeShop(index: number): void {
     var heading = this.dataService?.viewer?.camera.heading;

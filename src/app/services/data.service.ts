@@ -10,7 +10,4 @@ export class DataService {
   viewer: Cesium.Viewer | undefined;
   entities: Array<Cesium.Entity> = [];
   overviewSweepRemoveCallback?: Cesium.Event.RemoveCallback;
-  toggleInitialCameraInterpol?: Function;
-  cancelInitialCameraInterpol?: Function;
-  startInitialCameraInterpol = new Subject<boolean>();
 }
