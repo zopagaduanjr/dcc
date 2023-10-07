@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef } from "@angular/core";
 import * as Cesium from "cesium";
 import { environment } from "src/environments/environment";
 import { coffeeshops } from "../coffeeshops";
-import { setA } from "../coffeeroutes";
+import { setA, setB } from "../coffeeroutes";
 import { CoffeeShop } from "../coffeeshop";
 import { DataService } from "../services/data.service";
 
@@ -14,6 +14,7 @@ import { DataService } from "../services/data.service";
 export class MapComponent implements OnInit {
   setAElevation: number = 90;
   setBElevation: number = 50 + 50;
+  pathViewerSeconds: number = 600;
   usePhotorealisticTiles: boolean = false;
   elevationMarkerOffset: number = 74; //billboard offset, needed so that entity will not get buried in 3d tiles
   currentOnTickStep: number = 0; //counter for sweeping camera
@@ -56,6 +57,7 @@ export class MapComponent implements OnInit {
     this.generateMarkers();
     this.startMovingCamera();
     this.createPath();
+    this.createPath(false);
   }
 
   async setupViewer(): Promise<void> {
@@ -179,7 +181,7 @@ export class MapComponent implements OnInit {
     const start = Cesium.JulianDate.fromDate(new Date(2015, 2, 25, 16));
     const stop = Cesium.JulianDate.addSeconds(
       start,
-      600,
+      this.pathViewerSeconds,
       new Cesium.JulianDate()
     );
     if (this.viewer != null) {
@@ -196,7 +198,7 @@ export class MapComponent implements OnInit {
   ): Cesium.SampledPositionProperty {
     const start = Cesium.JulianDate.fromDate(new Date(2015, 2, 25, 16));
     const property = new Cesium.SampledPositionProperty();
-    var polylines = isSetA ? setA : [];
+    var polylines = isSetA ? setA : setB;
     var elevation = isSetA ? this.setAElevation : this.setBElevation;
     for (let i = 0; i < polylines.length; i += 1) {
       const time = Cesium.JulianDate.addSeconds(
@@ -219,15 +221,15 @@ export class MapComponent implements OnInit {
     return property;
   }
 
-  createPath(): void {
+  createPath(isSetA: boolean = true): void {
     this.setViewerClock();
     const start = Cesium.JulianDate.fromDate(new Date(2015, 2, 25, 16));
     const stop = Cesium.JulianDate.addSeconds(
       start,
-      600,
+      this.pathViewerSeconds,
       new Cesium.JulianDate()
     );
-    const position = this.generatePolylinePaths();
+    const position = this.generatePolylinePaths(isSetA);
     const entity = this.viewer?.entities.add({
       availability: new Cesium.TimeIntervalCollection([
         new Cesium.TimeInterval({
@@ -247,7 +249,7 @@ export class MapComponent implements OnInit {
         resolution: 1,
         material: new Cesium.PolylineGlowMaterialProperty({
           glowPower: 0.2,
-          color: Cesium.Color.YELLOW,
+          color: isSetA ? Cesium.Color.YELLOW : Cesium.Color.RED,
         }),
         width: 10,
       },
