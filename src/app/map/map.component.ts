@@ -16,9 +16,10 @@ export class MapComponent implements OnInit {
   setBElevation: number = 74 + 114;
   pathViewerSeconds: number = 600;
   usePhotorealisticTiles: boolean = false;
+  is3dTile: boolean = false;
   elevationMarkerOffset: number = 74; //billboard offset, needed so that entity will not get buried in 3d tiles
   currentOnTickStep: number = 0; //counter for sweeping camera
-  cameraSweepTickSteps: number = 400; //maximum sweeping camera tick
+  cameraSweepTickSteps: number = 1600; //maximum sweeping camera tick
   isForward: boolean = true; //flag to forward/reverse camera
   viewerOptions: Cesium.Viewer.ConstructorOptions = {
     globe: false,
@@ -70,11 +71,13 @@ export class MapComponent implements OnInit {
         tileset = await Cesium.Cesium3DTileset.fromUrl(
           `https://tile.googleapis.com/v1/3dtiles/root.json?key=${environment.googleMap.mapTiles}`
         );
+        this.is3dTile = true;
       } else {
         throw new Error("dont load maptiles");
       }
     } catch (e) {
       //google maps photorealistic quota exhausted
+      this.is3dTile = false;
       const osm = new Cesium.OpenStreetMapImageryProvider({
         url: "https://tile.openstreetmap.org/",
       });
@@ -161,12 +164,12 @@ export class MapComponent implements OnInit {
         this.isForward
       ) {
         this.currentOnTickStep = this.currentOnTickStep + 1;
-        this.viewer?.camera.moveRight(30);
-        this.viewer?.camera.rotate(Cesium.Cartesian3.UNIT_Z, -0.002);
+        this.viewer?.camera.moveRight(1);
+        this.viewer?.camera.rotate(Cesium.Cartesian3.UNIT_Z, -0.00002);
       } else {
         this.currentOnTickStep = this.currentOnTickStep - 1;
-        this.viewer?.camera.moveRight(-30);
-        this.viewer?.camera.rotate(Cesium.Cartesian3.UNIT_Z, +0.002);
+        this.viewer?.camera.moveRight(-1);
+        this.viewer?.camera.rotate(Cesium.Cartesian3.UNIT_Z, +0.00002);
       }
     });
     var handler = new Cesium.ScreenSpaceEventHandler(this.viewer!.canvas);
@@ -209,7 +212,7 @@ export class MapComponent implements OnInit {
       const position = Cesium.Cartesian3.fromDegrees(
         polylines[i][1],
         polylines[i][0],
-        elevation
+        this.is3dTile ? elevation : 12
       );
       property.addSample(time, position);
     }
@@ -254,5 +257,10 @@ export class MapComponent implements OnInit {
         width: 10,
       },
     });
+    if (isSetA) {
+      this.dataService!.pathA = entity;
+    } else {
+      this.dataService!.pathB = entity;
+    }
   }
 }

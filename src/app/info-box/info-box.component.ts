@@ -17,6 +17,9 @@ export class InfoBoxComponent {
   dataService?: DataService;
   coffeeShops: Array<CoffeeShop> = coffeeshops;
   selectedCoffeeShop?: CoffeeShop;
+  selectedCoffeeShopIndex?: number;
+  showSetA: boolean = true;
+  showSetB: boolean = true;
 
   flyToCoffeeShop(index: number): void {
     var heading = this.dataService?.viewer?.camera.heading;
@@ -29,9 +32,26 @@ export class InfoBoxComponent {
       offset: new Cesium.HeadingPitchRange(heading, pitch, 0),
     });
     this.selectedCoffeeShop = this.coffeeShops[index];
+    this.dataService!.entities[index].show = true;
+    this.selectedCoffeeShopIndex = index;
   }
 
-  clearCoffeeShop() {
+  clearCoffeeShop(): void {
     this.selectedCoffeeShop = undefined;
+  }
+
+  setAClick(): void {
+    this.showSetA = !this.showSetA;
+    for (let index = 0; index < 9; index++) {
+      this.dataService!.entities[index].show = this.showSetA;
+      this.dataService!.pathA!.show = this.showSetA;
+    }
+  }
+  setBClick(): void {
+    this.showSetB = !this.showSetB;
+    for (let index = 9; index < 19; index++) {
+      this.dataService!.entities[index].show = this.showSetB;
+      this.dataService!.pathB!.show = this.showSetB;
+    }
   }
 }

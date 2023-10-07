@@ -9,5 +9,7 @@ export class DataService {
   constructor() {}
   viewer: Cesium.Viewer | undefined;
   entities: Array<Cesium.Entity> = [];
+  pathA?: Cesium.Entity;
+  pathB?: Cesium.Entity;
   overviewSweepRemoveCallback?: Cesium.Event.RemoveCallback;
 }

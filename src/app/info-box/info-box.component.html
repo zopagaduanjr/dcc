@@ -86,6 +86,21 @@
     <h1 style="font-weight: 100; font-style: italic">
       Davao Coffee Crawl 2023
     </h1>
+    <div class="set-checkbox">
+      <md-checkbox
+        touch-target="wrapper"
+        [checked]="showSetA ? 'checked' : null"
+        (click)="setAClick()"
+      ></md-checkbox>
+      <div>Set A</div>
+      <md-checkbox
+        touch-target="wrapper"
+        [checked]="showSetB ? 'checked' : null"
+        (click)="setBClick()"
+      ></md-checkbox>
+      <div>Set B</div>
+    </div>
+
     <md-list>
       <ng-container *ngFor="let coffee of coffeeShops; index as i">
         <md-list-item (click)="flyToCoffeeShop(i)">
