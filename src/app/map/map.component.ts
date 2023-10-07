@@ -12,8 +12,8 @@ import { DataService } from "../services/data.service";
   styleUrls: ["./map.component.css"],
 })
 export class MapComponent implements OnInit {
-  setAElevation: number = 90;
-  setBElevation: number = 50 + 50;
+  setAElevation: number = 74;
+  setBElevation: number = 74 + 114;
   pathViewerSeconds: number = 600;
   usePhotorealisticTiles: boolean = false;
   elevationMarkerOffset: number = 74; //billboard offset, needed so that entity will not get buried in 3d tiles
@@ -241,8 +241,8 @@ export class MapComponent implements OnInit {
       orientation: new Cesium.VelocityOrientationProperty(position),
       point: {
         pixelSize: 5,
-        color: Cesium.Color.WHITE,
-        outlineColor: Cesium.Color.WHITE,
+        color: isSetA ? Cesium.Color.YELLOW : Cesium.Color.RED,
+        outlineColor: isSetA ? Cesium.Color.YELLOW : Cesium.Color.RED,
         outlineWidth: 2,
       },
       path: {
