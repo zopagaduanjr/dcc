@@ -51,3 +51,7 @@ Comes from dcc-data repository.
 ## Angular Material
 
 Angular material seems to have clashing issue with cesium css & `@angular-builders/custom-webpack`
+
+## Coffee Shop Data
+
+Coffee shop data comes from repository [dcc-data](https://github.com/zopagaduanjr/dcc-data) which contains API helpers on retrieving location related data.
